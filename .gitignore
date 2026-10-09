@@ -1,0 +1,19 @@
+# IDE
+.idea/
+*.iml
+.vscode/
+.project
+.classpath
+.settings/
+nbproject/
+
+# Compilados
+target/
+*.class
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

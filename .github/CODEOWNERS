@@ -1,0 +1,14 @@
+# Reemplazar @dev1, @dev2 y @dev3 por los usuarios de GitHub reales.
+/src/main/java/co/edu/uniquindio/quindioexpress/modelo/          @dev1
+/src/main/java/co/edu/uniquindio/quindioexpress/estructuras/     @dev1
+/src/main/java/co/edu/uniquindio/quindioexpress/servicio/        @dev1
+/src/main/java/co/edu/uniquindio/quindioexpress/datos/           @dev1
+/src/main/java/co/edu/uniquindio/quindioexpress/demo/DemoCore.java        @dev1
+/src/main/java/co/edu/uniquindio/quindioexpress/comparadores/    @dev2
+/src/main/java/co/edu/uniquindio/quindioexpress/operaciones/     @dev2
+/src/main/java/co/edu/uniquindio/quindioexpress/algoritmos/      @dev2
+/src/main/java/co/edu/uniquindio/quindioexpress/demo/DemoAlgoritmos.java  @dev2
+/src/main/java/co/edu/uniquindio/quindioexpress/Main.java        @dev3
+/docs/                                                           @dev3
+/README.md                                                       @dev3
+/.gitignore                                                      @dev3
