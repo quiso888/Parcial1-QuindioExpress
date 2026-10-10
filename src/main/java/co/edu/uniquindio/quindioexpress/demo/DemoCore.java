@@ -1,18 +1,20 @@
 package co.edu.uniquindio.quindioexpress.demo;
 
+import co.edu.uniquindio.quindioexpress.estructuras.IColeccion;
+import co.edu.uniquindio.quindioexpress.estructuras.ListaSimplementeEnlazada;
 import co.edu.uniquindio.quindioexpress.modelo.Paquete;
 import co.edu.uniquindio.quindioexpress.modelo.Repartidor;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 /**
  * Demostración de modelo, lista propia y centro de distribución.
  *
- * <p>Primer commit: solo el contrato (Paquete, Repartidor, IColeccion).
- * En los siguientes commits de Dev 1 se agregan la lista propia, el centro de
- * distribución y los datos de prueba.
+ * <p>Tanda 2: se agrega la lista simplemente enlazada propia con sus casos borde.
+ * En la tanda 3 llegan el centro de distribución y los datos de prueba.
  *
  * <p>Responsable: Dev 1.
  */
@@ -63,6 +65,54 @@ public final class DemoCore {
         r2.setDisponible(true);
         System.out.println("  R02 después de setDisponible(true): " + r2);
         intentar("Repartidor sin zona", () -> new Repartidor("R03", "Lucía Mejía", "", true));
+
+        Titulos.seccion("DEV 1 - LISTA SIMPLEMENTE ENLAZADA PROPIA: CASOS BORDE");
+        demoListaPropia();
+    }
+
+    /** La lista es genérica: aquí se usa con String y con Integer, no con Paquete. */
+    private static void demoListaPropia() {
+        IColeccion<String> lista = new ListaSimplementeEnlazada<>();
+        System.out.println("Lista vacía: " + lista + " tamaño=" + lista.tamanio() + " vacía=" + lista.estaVacia());
+        System.out.println("Eliminar en lista vacía: " + lista.eliminar("X"));
+        intentar("obtener(0) en lista vacía", () -> lista.obtener(0));
+
+        lista.agregar("A");
+        System.out.println("Un elemento: " + lista + " obtener(0)=" + lista.obtener(0));
+        System.out.println("Eliminar el único: " + lista.eliminar("A") + " -> " + lista + " vacía=" + lista.estaVacia());
+
+        lista.agregar("A");
+        lista.agregar("B");
+        lista.agregar("C");
+        lista.agregar("D");
+        lista.agregar("E");
+        System.out.println("Cinco elementos: " + lista + " tamaño=" + lista.tamanio());
+        System.out.println("Eliminar el primero (A): " + lista.eliminar("A") + " -> " + lista);
+        System.out.println("Eliminar intermedio (C): " + lista.eliminar("C") + " -> " + lista);
+        System.out.println("Eliminar el último (E): " + lista.eliminar("E") + " -> " + lista);
+        lista.agregar("F");
+        System.out.println("Agregar F después de borrar el último (prueba que la cola se movió): " + lista);
+        System.out.println("Eliminar inexistente (Z): " + lista.eliminar("Z") + " -> " + lista);
+        System.out.println("obtener(1) = " + lista.obtener(1));
+        intentar("obtener(10)", () -> lista.obtener(10));
+
+        System.out.print("Recorrido con Iterator explícito: ");
+        Iterator<String> it = lista.iterator();
+        while (it.hasNext()) {
+            System.out.print(it.next() + " ");
+        }
+        System.out.println();
+        intentar("next() cuando ya no hay más", it::next);
+
+        IColeccion<Integer> numeros = new ListaSimplementeEnlazada<>();
+        numeros.agregar(10);
+        numeros.agregar(20);
+        numeros.agregar(30);
+        int suma = 0;
+        for (int n : numeros) {           // for-each funciona porque la lista es Iterable
+            suma += n;
+        }
+        System.out.println("Misma lista con Integer " + numeros + " suma=" + suma);
     }
 
     private static String codigos(List<Paquete> paquetes) {
