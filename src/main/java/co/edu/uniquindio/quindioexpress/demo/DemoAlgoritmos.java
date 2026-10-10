@@ -1,5 +1,7 @@
 package co.edu.uniquindio.quindioexpress.demo;
 
+import co.edu.uniquindio.quindioexpress.algoritmos.BusquedaBinaria;
+import co.edu.uniquindio.quindioexpress.algoritmos.DivideYVenceras;
 import co.edu.uniquindio.quindioexpress.algoritmos.Recursivos;
 import co.edu.uniquindio.quindioexpress.comparadores.ComparadorPeso;
 import co.edu.uniquindio.quindioexpress.comparadores.ComparadorPrioridad;
@@ -9,13 +11,15 @@ import co.edu.uniquindio.quindioexpress.operaciones.Despacho;
 import co.edu.uniquindio.quindioexpress.operaciones.ReporteMunicipios;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
 /**
  * Demostración de colecciones, despacho y algoritmos.
- *  se agregan municipios (Set, TreeSet, Map) y recursividad.
+ * Comparadores, despacho, municipios, recursividad, búsqueda binaria y
+ * divide y vencerás, cada uno con los ejemplos del enunciado.
  */
 public final class DemoAlgoritmos {
 
@@ -60,6 +64,8 @@ public final class DemoAlgoritmos {
 
         demoMunicipios();
         demoRecursivos();
+        demoBusquedaBinaria();
+        demoDivideYVenceras();
     }
 
     private static void demoMunicipios() {
@@ -110,6 +116,60 @@ public final class DemoAlgoritmos {
         Titulos.sub("Paquetes con prioridad >= 4 en 5, 2, 4, 1, 5, 3, 4 (esperado 4)");
         int cantidad = Recursivos.contarPrioridadMinimaConTraza(ejemploPrioridades, 4);
         System.out.println("Resultado: " + cantidad + " paquetes");
+    }
+
+    private static void demoBusquedaBinaria() {
+        Titulos.seccion("DEV 2 - BÚSQUEDA BINARIA (precondición: ordenada por código)");
+        List<Paquete> ordenados = List.of(
+                new Paquete("PQ105", "Salento", 4.5, 5, 25),
+                new Paquete("PQ214", "Montenegro", 2.8, 4, 40),
+                new Paquete("PQ318", "Calarcá", 18.7, 2, 35),
+                new Paquete("PQ421", "Quimbaya", 9.9, 2, 55),
+                new Paquete("PQ567", "Salento", 7.4, 3, 50),
+                new Paquete("PQ731", "Armenia", 12.0, 5, 45),
+                new Paquete("PQ842", "Calarcá", 1.5, 5, 18),
+                new Paquete("PQ942", "Armenia", 3.2, 4, 20)
+        );
+        System.out.println("Lista: " + codigos(ordenados));
+        System.out.println("Buscar PQ731 (esperado: posición 5 en 2 pasos):");
+        System.out.println("  posición = " + BusquedaBinaria.buscarConTraza(ordenados, "PQ731"));
+        System.out.println("Buscar PQ500 (no existe):");
+        System.out.println("  posición = " + BusquedaBinaria.buscarConTraza(ordenados, "PQ500"));
+        System.out.println("Versión recursiva, PQ214 -> posición " + BusquedaBinaria.buscarRecursiva(ordenados, "PQ214")
+                + " (esperado: 1)");
+
+        Titulos.sub("Qué pasa si se incumple la precondición");
+        List<Paquete> desordenados = new ArrayList<>(List.of(
+                new Paquete("PQ731", "Armenia", 12.0, 5, 45),
+                new Paquete("PQ105", "Salento", 4.5, 5, 25),
+                new Paquete("PQ942", "Armenia", 3.2, 4, 20),
+                new Paquete("PQ318", "Calarcá", 18.7, 2, 35),
+                new Paquete("PQ567", "Salento", 7.4, 3, 50),
+                new Paquete("PQ829", "Armenia", 5.1, 1, 15)
+        ));
+        System.out.println("Lista en orden de llegada: " + codigos(desordenados)
+                + "  ¿ordenada? " + BusquedaBinaria.estaOrdenadaPorCodigo(desordenados));
+        int sinOrdenar = BusquedaBinaria.buscar(desordenados, "PQ105");
+        System.out.println("Buscar PQ105 sin ordenar: posición " + sinOrdenar
+                + (sinOrdenar < 0 ? " -> dice que no existe, pero sí está" : ""));
+        Collections.sort(desordenados);            // primero se ordena (orden natural por código)
+        System.out.println("Después de ordenar: " + codigos(desordenados)
+                + " -> PQ105 en posición " + BusquedaBinaria.buscar(desordenados, "PQ105"));
+    }
+
+    private static void demoDivideYVenceras() {
+        Titulos.seccion("DEV 2 - DIVIDE Y VENCERÁS: PAQUETE DE MAYOR PESO");
+        List<Paquete> pesos = List.of(
+                new Paquete("PQ105", "Salento", 4.5, 5, 25),
+                new Paquete("PQ731", "Armenia", 12.0, 5, 45),
+                new Paquete("PQ942", "Armenia", 3.2, 4, 20),
+                new Paquete("PQ318", "Calarcá", 18.7, 2, 35),
+                new Paquete("PQ567", "Salento", 7.4, 3, 50),
+                new Paquete("PQ829", "Armenia", 5.1, 1, 15)
+        );
+        System.out.println("Pesos 4.5, 12.0, 3.2, 18.7, 7.4, 5.1 (esperado 18.7):");
+        Paquete mayor = DivideYVenceras.mayorPesoConTraza(pesos);
+        System.out.println("Resultado final: " + mayor);
     }
 
     private static void ordenarYMostrar(String nombre, List<Paquete> lista, Comparator<Paquete> criterio) {
