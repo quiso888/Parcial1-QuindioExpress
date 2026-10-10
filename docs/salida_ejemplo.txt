@@ -1,0 +1,279 @@
+QuindíoExpress - Parcial 1 Estructuras de Datos
+
+======================================================================
+DEV 1 - MODELO: Paquete y Repartidor
+======================================================================
+Paquetes creados:
+  PQ731[Armenia, 12.0 kg, p5, 45 min]
+  PQ105[Salento, 4.5 kg, p5, 25 min]
+  PQ942[Armenia, 3.2 kg, p4, 20 min]
+  PQ318[Calarcá, 18.7 kg, p5, 25 min]  <- prioridad por defecto
+
+--- Validaciones (cada una debe ser rechazada)
+  Peso 0 -> rechazado: El peso debe ser mayor que cero (PQ999)
+  Prioridad 7 (rango 1 a 5) -> rechazado: La prioridad debe estar entre 1 y 5 (PQ998)
+  Prioridad 0 -> rechazado: La prioridad debe estar entre 1 y 5 (PQ997)
+  Destino vacío -> rechazado: El destino no puede ser nulo ni vacío (PQ996)
+  Tiempo estimado 0 -> rechazado: El tiempo estimado debe ser mayor que cero (PQ995)
+  Código nulo -> rechazado: El código no puede ser nulo ni vacío
+
+--- Orden natural (Comparable por código)
+Antes:   PQ731 PQ105 PQ942 PQ318
+Después: PQ105 PQ318 PQ731 PQ942  (esperado: PQ105 PQ318 PQ731 PQ942)
+equals por código: true (esperado: true)
+
+--- Repartidores
+  R01 Ana María Gómez (Armenia, disponible)
+  R02 Carlos Ruiz (Armenia, no disponible)
+  R02 después de setDisponible(true): R02 Carlos Ruiz (Armenia, disponible)
+  Repartidor sin zona -> rechazado: La zona no puede ser nula ni vacía (R03)
+
+======================================================================
+DEV 1 - LISTA SIMPLEMENTE ENLAZADA PROPIA: CASOS BORDE
+======================================================================
+Lista vacía: [] tamaño=0 vacía=true
+Eliminar en lista vacía: false
+  obtener(0) en lista vacía -> rechazado: Posición 0 fuera de rango (tamaño 0)
+Un elemento: [A] obtener(0)=A
+Eliminar el único: true -> [] vacía=true
+Cinco elementos: [A -> B -> C -> D -> E] tamaño=5
+Eliminar el primero (A): true -> [B -> C -> D -> E]
+Eliminar intermedio (C): true -> [B -> D -> E]
+Eliminar el último (E): true -> [B -> D]
+Agregar F después de borrar el último (prueba que la cola se movió): [B -> D -> F]
+Eliminar inexistente (Z): false -> [B -> D -> F]
+obtener(1) = D
+  obtener(10) -> rechazado: Posición 10 fuera de rango (tamaño 3)
+Recorrido con Iterator explícito: B D F 
+  next() cuando ya no hay más -> rechazado: No hay más elementos en la lista
+Misma lista con Integer [10 -> 20 -> 30] suma=60
+
+======================================================================
+DEV 1 - REGISTRO DE LA JORNADA
+======================================================================
+Paquetes registrados: 32
+Repartidores registrados: 7
+Orden de registro (se conserva tal cual llegaron):
+  PQ731[Armenia, 12.0 kg, p5, 45 min]
+  PQ105[Salento, 4.5 kg, p5, 25 min]
+  PQ942[Armenia, 3.2 kg, p4, 20 min]
+  PQ318[Calarcá, 18.7 kg, p2, 35 min]
+  PQ567[Salento, 7.4 kg, p3, 50 min]
+  PQ829[Armenia, 5.1 kg, p1, 15 min]
+  PQ420[Circasia, 6.0 kg, p3, 30 min]
+  PQ214[Montenegro, 2.8 kg, p4, 40 min]
+  PQ421[Quimbaya, 9.9 kg, p2, 55 min]
+  PQ842[Calarcá, 1.5 kg, p5, 18 min]
+  PQ101[Armenia, 4.5 kg, p3, 22 min]
+  PQ203[Salento, 3.0 kg, p2, 60 min]
+  PQ415[Armenia, 7.2 kg, p4, 28 min]
+  PQ730[Armenia, 2.3 kg, p1, 12 min]
+  PQ688[Circasia, 11.4 kg, p5, 33 min]
+  PQ059[Montenegro, 0.8 kg, p3, 47 min]
+  PQ976[Quimbaya, 15.2 kg, p4, 38 min]
+  PQ333[Calarcá, 6.6 kg, p3, 26 min]
+  PQ512[Salento, 2.1 kg, p5, 58 min]
+  PQ147[Circasia, 8.3 kg, p2, 41 min]
+  PQ864[Montenegro, 13.0 kg, p5, 52 min]
+  PQ290[Quimbaya, 4.0 kg, p1, 36 min]
+  PQ605[Armenia, 9.1 kg, p3, 19 min]
+  PQ781[Calarcá, 3.7 kg, p4, 24 min]
+  PQ456[Salento, 10.5 kg, p4, 44 min]
+  PQ038[Circasia, 1.9 kg, p1, 29 min]
+  PQ917[Montenegro, 5.5 kg, p2, 31 min]
+  PQ372[Quimbaya, 7.8 kg, p5, 27 min]
+  PQ649[Armenia, 2.6 kg, p2, 16 min]
+  PQ183[Calarcá, 14.3 kg, p3, 39 min]
+  PQ525[Montenegro, 6.9 kg, p4, 21 min]
+  PQ808[Quimbaya, 3.3 kg, p5, 34 min]
+Repartidores:
+  R01 Ana María Gómez (Armenia, disponible)
+  R02 Carlos Ruiz (Armenia, no disponible)
+  R03 Lucía Mejía (Calarcá, disponible)
+  R04 Jorge Pérez (Salento, disponible)
+  R05 Marta Ríos (Circasia, disponible)
+  R06 Andrés López (Montenegro, disponible)
+  R07 Paula Castro (Quimbaya, disponible)
+
+======================================================================
+DEV 1 - VALIDACIONES DEL CENTRO
+======================================================================
+  Código repetido PQ731 -> rechazado: Ya existe un paquete con el código PQ731
+  Repartidor con id repetido R01 -> rechazado: Ya existe un repartidor con la identificación R01
+Paquetes después de los intentos: 32 (no cambió)
+
+======================================================================
+DEV 1 - CONSULTA POR CÓDIGO (HashMap, O(1) promedio)
+======================================================================
+PQ942: destino=Armenia, peso=3.2 kg, prioridad=4, tiempo=20 min
+PQ105: destino=Salento, peso=4.5 kg, prioridad=5, tiempo=25 min
+PQ000: no existe
+¿Existe repartidor R04? true -> R04 Jorge Pérez (Salento, disponible)
+
+======================================================================
+DEV 1 - REGLAS DE ASIGNACIÓN Y ENTREGA
+======================================================================
+  Asignar PQ731 (Armenia) a R02 (no disponible) -> rechazado: El repartidor R02 no está disponible
+  Asignar PQ731 (Armenia) a R04 (zona Salento) -> rechazado: La zona de R04 (Salento) no corresponde al destino de PQ731 (Armenia)
+PQ731 asignado a R01 Ana María Gómez (Armenia, no disponible)
+PQ942 (Armenia) con R01 ocupado y R02 no disponible -> no hay repartidor disponible, queda esperando
+Se entregó PQ731; R01 vuelve a estar disponible: true
+Ahora PQ942 -> R01 Ana María Gómez (Armenia, no disponible)
+Historial (lista propia): PQ731 PQ942  pendientes: 30
+
+======================================================================
+DEV 2 - COMPARADORES (Comparator)
+======================================================================
+Orden de llegada:          PQ420 PQ731 PQ105 PQ942
+Prioridad (mayor a menor): PQ731 PQ105 PQ942 PQ420
+Peso (mayor a menor):      PQ731 PQ420 PQ105 PQ942
+Tiempo (menor a mayor):    PQ942 PQ105 PQ420 PQ731
+La lista original no cambió: PQ420 PQ731 PQ105 PQ942
+
+======================================================================
+DEV 2 - DESPACHO (Queue y PriorityQueue)
+======================================================================
+Por llegada (FIFO): PQ420 PQ731 PQ105 PQ942  (esperado: PQ420 PQ731 PQ105 PQ942)
+Prioritario:        PQ105 PQ731 PQ942 PQ420  (esperado: PQ105 PQ731 PQ942 PQ420)
+
+======================================================================
+DEV 2 - MUNICIPIOS (Set y Map)
+======================================================================
+Paquetes: PQ731 PQ105 PQ942 PQ318 PQ567 PQ829
+Municipios sin repetir (LinkedHashSet): [Armenia, Salento, Calarcá]  (esperado: [Armenia, Salento, Calarcá])
+Municipios ordenados (TreeSet):         [Armenia, Calarcá, Salento]  (esperado: [Armenia, Calarcá, Salento])
+Paquetes por municipio (Map):
+  Armenia -> PQ731 PQ942 PQ829
+  Salento -> PQ105 PQ567
+  Calarcá -> PQ318
+
+======================================================================
+DEV 2 - RECURSIVIDAD (con traza de la pila de llamadas)
+======================================================================
+
+--- Peso total de Armenia (esperado 14.0)
+f(i=0) PQ101 Armenia -> queda pendiente 4.5 + f(1)
+  f(i=1) PQ203 Salento -> queda pendiente 0.0 + f(2)
+    f(i=2) PQ415 Armenia -> queda pendiente 7.2 + f(3)
+      f(i=3) PQ730 Armenia -> queda pendiente 2.3 + f(4)
+        f(i=4) caso base -> retorna 0.0
+      f(i=3) retorna 2.3
+    f(i=2) retorna 9.5
+  f(i=1) retorna 9.5
+f(i=0) retorna 14.0
+Resultado: 14.0 kg
+
+--- Paquetes con prioridad >= 4 en 5, 2, 4, 1, 5, 3, 4 (esperado 4)
+g(i=0) PQ501 prioridad 5 -> queda pendiente 1 + g(1)
+  g(i=1) PQ502 prioridad 2 -> queda pendiente 0 + g(2)
+    g(i=2) PQ503 prioridad 4 -> queda pendiente 1 + g(3)
+      g(i=3) PQ504 prioridad 1 -> queda pendiente 0 + g(4)
+        g(i=4) PQ505 prioridad 5 -> queda pendiente 1 + g(5)
+          g(i=5) PQ506 prioridad 3 -> queda pendiente 0 + g(6)
+            g(i=6) PQ507 prioridad 4 -> queda pendiente 1 + g(7)
+              g(i=7) caso base -> retorna 0
+            g(i=6) retorna 1
+          g(i=5) retorna 1
+        g(i=4) retorna 2
+      g(i=3) retorna 2
+    g(i=2) retorna 3
+  g(i=1) retorna 3
+g(i=0) retorna 4
+Resultado: 4 paquetes
+
+======================================================================
+DEV 2 - BÚSQUEDA BINARIA (precondición: ordenada por código)
+======================================================================
+Lista: PQ105 PQ214 PQ318 PQ421 PQ567 PQ731 PQ842 PQ942
+Buscar PQ731 (esperado: posición 5 en 2 pasos):
+  paso 1: ini=0 fin=7 medio=3 (PQ421) -> buscar a la derecha
+  paso 2: ini=4 fin=7 medio=5 (PQ731) -> encontrado
+  posición = 5
+Buscar PQ500 (no existe):
+  paso 1: ini=0 fin=7 medio=3 (PQ421) -> buscar a la derecha
+  paso 2: ini=4 fin=7 medio=5 (PQ731) -> buscar a la izquierda
+  paso 3: ini=4 fin=4 medio=4 (PQ567) -> buscar a la izquierda
+  ini=4 > fin=3 -> no está
+  posición = -1
+Versión recursiva, PQ214 -> posición 1 (esperado: 1)
+
+--- Qué pasa si se incumple la precondición
+Lista en orden de llegada: PQ731 PQ105 PQ942 PQ318 PQ567 PQ829  ¿ordenada? false
+Buscar PQ105 sin ordenar: posición -1 -> dice que no existe, pero sí está
+Después de ordenar: PQ105 PQ318 PQ567 PQ731 PQ829 PQ942 -> PQ105 en posición 0
+
+======================================================================
+DEV 2 - DIVIDE Y VENCERÁS: PAQUETE DE MAYOR PESO
+======================================================================
+Pesos 4.5, 12.0, 3.2, 18.7, 7.4, 5.1 (esperado 18.7):
+[0..5] dividir en [0..2] y [3..5]
+  [0..2] dividir en [0..1] y [2..2]
+    [0..1] dividir en [0..0] y [1..1]
+      [0..0] caso base -> 4.5 (PQ105)
+      [1..1] caso base -> 12.0 (PQ731)
+    [0..1] combinar max(4.5, 12.0) -> 12.0
+    [2..2] caso base -> 3.2 (PQ942)
+  [0..2] combinar max(12.0, 3.2) -> 12.0
+  [3..5] dividir en [3..4] y [5..5]
+    [3..4] dividir en [3..3] y [4..4]
+      [3..3] caso base -> 18.7 (PQ318)
+      [4..4] caso base -> 7.4 (PQ567)
+    [3..4] combinar max(18.7, 7.4) -> 18.7
+    [5..5] caso base -> 5.1 (PQ829)
+  [3..5] combinar max(18.7, 5.1) -> 18.7
+[0..5] combinar max(12.0, 18.7) -> 18.7
+Resultado final: PQ318[Calarcá, 18.7 kg, p2, 35 min]
+
+======================================================================
+JORNADA - MUNICIPIOS Y PAQUETES POR MUNICIPIO
+======================================================================
+Municipios ordenados: [Armenia, Calarcá, Circasia, Montenegro, Quimbaya, Salento]
+  Armenia -> PQ731 -> PQ942 -> PQ829 -> PQ101 -> PQ415 -> PQ730 -> PQ605 -> PQ649
+  Salento -> PQ105 -> PQ567 -> PQ203 -> PQ512 -> PQ456
+  Calarcá -> PQ318 -> PQ842 -> PQ333 -> PQ781 -> PQ183
+  Circasia -> PQ420 -> PQ688 -> PQ147 -> PQ038
+  Montenegro -> PQ214 -> PQ059 -> PQ864 -> PQ917 -> PQ525
+  Quimbaya -> PQ421 -> PQ976 -> PQ290 -> PQ372 -> PQ808
+
+======================================================================
+JORNADA - 10 DESPACHOS PRIORITARIOS CON ASIGNACIÓN Y ENTREGA
+======================================================================
+  PQ842[Calarcá, 1.5 kg, p5, 18 min] -> R03 Lucía Mejía -> entregado
+  PQ105[Salento, 4.5 kg, p5, 25 min] -> R04 Jorge Pérez -> entregado
+  PQ372[Quimbaya, 7.8 kg, p5, 27 min] -> R07 Paula Castro -> entregado
+  PQ688[Circasia, 11.4 kg, p5, 33 min] -> R05 Marta Ríos -> entregado
+  PQ808[Quimbaya, 3.3 kg, p5, 34 min] -> R07 Paula Castro -> entregado
+  PQ864[Montenegro, 13.0 kg, p5, 52 min] -> R06 Andrés López -> entregado
+  PQ512[Salento, 2.1 kg, p5, 58 min] -> R04 Jorge Pérez -> entregado
+  PQ525[Montenegro, 6.9 kg, p4, 21 min] -> R06 Andrés López -> entregado
+  PQ781[Calarcá, 3.7 kg, p4, 24 min] -> R03 Lucía Mejía -> entregado
+  PQ415[Armenia, 7.2 kg, p4, 28 min] -> R01 Ana María Gómez -> entregado
+
+--- Historial de entregas (lista enlazada propia, recorrida con for-each)
+  PQ731 -> PQ942 -> PQ842 -> PQ105 -> PQ372 -> PQ688 -> PQ808 -> PQ864 -> PQ512 -> PQ525 -> PQ781 -> PQ415
+  Entregados: 12, primero: PQ731, pendientes: 20
+
+======================================================================
+JORNADA - RECURSIVIDAD SOBRE LOS 32 PAQUETES
+======================================================================
+  Peso total Armenia    =   46.0 kg
+  Peso total Calarcá    =   44.8 kg
+  Peso total Circasia   =   27.6 kg
+  Peso total Montenegro =   29.0 kg
+  Peso total Quimbaya   =   40.2 kg
+  Peso total Salento    =   27.5 kg
+  Paquetes con prioridad >= 4: 15
+
+======================================================================
+JORNADA - BÚSQUEDA BINARIA
+======================================================================
+  PQ059 -> posición 1: PQ059[Montenegro, 0.8 kg, p3, 47 min]
+  PQ731 -> posición 23: PQ731[Armenia, 12.0 kg, p5, 45 min]
+  PQ999 -> no existe
+
+======================================================================
+JORNADA - PAQUETE DE MAYOR PESO (divide y vencerás)
+======================================================================
+  PQ318[Calarcá, 18.7 kg, p2, 35 min]
+
+Fin de la demostración.
