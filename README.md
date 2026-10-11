@@ -4,9 +4,9 @@ Parcial 1 de Estructuras de Datos — Universidad del Quindío.
 Gestión de paquetes y repartidores de un centro de distribución, con estructuras de datos propias y algoritmos recursivos.
 
 ## Integrantes
-| Rol | Nombre | Módulo |
+| Nombre | Rol | Módulo |
 |-----|--------|--------|
-| Santiago Padilla | | Modelo, lista propia y centro de distribución |
+| Santiago Padilla| | Modelo, lista propia y centro de distribución |
 | Nicolas Muños | | Colecciones, despacho y algoritmos |
 | Sergio Ramos | | Análisis (A, C, D), integración y entrega |
 
