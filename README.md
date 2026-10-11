@@ -5,10 +5,10 @@ Gestión de paquetes y repartidores de un centro de distribución, con estructur
 
 ## Integrantes
 | Nombre | Rol | Módulo |
-|-----|--------|--------|
-| Santiago Padilla| | Modelo, lista propia y centro de distribución |
-| Nicolas Muños | | Colecciones, despacho y algoritmos |
-| Sergio Ramos | | Análisis (A, C, D), integración y entrega |
+|--------|-----|--------|
+| Santiago Padilla | Dev 1 | Modelo, lista propia y centro de distribución |
+| Nicolas Muños | Dev 2 | Colecciones, despacho y algoritmos |
+| Sergio Ramos | Dev 3 | Análisis (A, C, D), integración y entrega |
 
 ## Requisitos
 - Java 25 (el `pom.xml` sigue al repo guía). El código no usa nada nuevo: compila con Java 17 o superior.
@@ -70,7 +70,11 @@ docs/              Partes A, C y D (base para el PDF)
 - **La búsqueda binaria no verifica el orden** (costaría O(n)); la precondición está en el Javadoc y la demo muestra qué pasa si se incumple.
 
 ## Quién hizo qué
-(se completa al final)
+| Integrante | Aportes (PR / commit) |
+|------------|-----------------------|
+| Santiago Padilla (Dev 1) | PR #1 contrato del modelo: `Paquete`, `Repartidor`, `IColeccion`, `DemoCore`. PR #2 lista simplemente enlazada propia: `Nodo`, `ListaIterator`, `ListaSimplementeEnlazada` y sus casos borde. PR #4 `CentroDistribucion` (registro, consulta, asignación, entregas, historial) y `DatosPrueba` (32 paquetes, 7 repartidores). |
+| Nicolas Muños (Dev 2) | Commit de comparadores (`ComparadorPrioridad`, `ComparadorPeso`, `ComparadorTiempo`, `ComparadorDespacho`) y `Despacho` (FIFO y prioritario). PR #3 `ReporteMunicipios` y `Recursivos` con traza de la pila. PR #7 `BusquedaBinaria` y `DivideYVenceras`. `DemoAlgoritmos`. |
+| Sergio Ramos (Dev 3) | PR #5 `Main` y Parte A. PR #6 Parte C y README. PR #8 `Main` final, `DemoJornada`, Parte D y `salida_ejemplo.txt`. Organización final de los documentos. |
 
 ## Flujo de trabajo
 Ver [CONTRIBUTING.md](CONTRIBUTING.md).
