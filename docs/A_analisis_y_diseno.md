@@ -1,7 +1,5 @@
 # Parte A. Análisis y diseño
 
-> Borrador para discutir en equipo. Cada fila debe poder explicarla cualquiera de los tres.
-
 ## A.1 Selección de colecciones
 
 | # | Necesidad | Estructura elegida | Operación principal | Complejidad esperada | Alternativa descartada | Justificación |
@@ -39,4 +37,8 @@ Operación dominante: buscar un paquete por su código.
 
 Tercera opción a mencionar: `ArrayList` **ordenado** por código con búsqueda binaria. Búsqueda O(log n) (unas 19 comparaciones para 500.000) con poca memoria, pero cada inserción en orden cuesta O(n) por el desplazamiento. Sirve para reportes que ya vienen ordenados, no como registro principal.
 
-> Las cifras de memoria son aproximadas (dependen de la JVM y de si usa referencias comprimidas). Verifíquenlas antes de entregar.
+Las cifras de memoria son aproximadas: dependen de la JVM y de si usa referencias comprimidas (4 u 8 bytes por referencia).
+
+## A.3 Decisión sobre el rango de prioridad
+
+El enunciado dice en la descripción del paquete que la prioridad va de 0 a 10 con 5 por defecto, y en las reglas del sistema que debe estar entre 1 y 5. Se tomó la regla explícita (1 a 5, con 5 por defecto) y se dejó en las constantes `PRIORIDAD_MIN`, `PRIORIDAD_MAX` y `PRIORIDAD_POR_DEFECTO` de `Paquete`, de modo que cambiar el rango es modificar dos líneas.

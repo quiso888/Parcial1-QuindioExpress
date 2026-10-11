@@ -1,7 +1,6 @@
 # Parte C. Análisis algorítmico y pruebas
 
-> Todas las trazas de este documento las imprime el programa al ejecutar `Main`
-> (métodos `...ConTraza`), así que se pueden verificar en vivo durante la sustentación.
+Todas las trazas de este documento las imprime el programa al ejecutar `Main` (métodos `...ConTraza`), así que se pueden verificar en vivo durante la sustentación.
 
 ## C.1 Pruebas de escritorio y pila de llamadas
 
