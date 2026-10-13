@@ -38,14 +38,29 @@ java "-Dstdout.encoding=UTF-8" -cp out co.edu.uniquindio.quindioexpress.Main
 ```
 Si las tildes salen como `?`, es la consola: agrega `-Dstdout.encoding=UTF-8` al comando `java` o ejecuta `chcp 65001` antes.
 
-## Qué muestra `Main`
+## Menú interactivo
+Al ejecutar `Main` sin argumentos se abre un menú de consola. Primero pregunta si se cargan los datos de prueba (32 paquetes y 7 repartidores) o se empieza con el centro vacío. Desde el menú se puede:
+- registrar y consultar paquetes y repartidores (con todas las validaciones);
+- asignar un paquete a un repartidor, a mano o automáticamente, y registrar la entrega;
+- ver el historial de entregas (lista propia), el orden de despacho por llegada y prioritario, y ordenar los pendientes por cualquier comparador;
+- sacar el reporte de municipios y ejecutar los algoritmos (recursivos, búsqueda binaria y divide y vencerás) sobre los datos actuales, con la traza opcional;
+- ejecutar las demos completas (opción 17).
+
+## Demos sin menú
+Con el argumento `--demo`, `Main` ejecuta todas las demos sin pedir datos:
+```bash
+java -cp out co.edu.uniquindio.quindioexpress.Main --demo
+```
+En IntelliJ o VS Code el argumento se pone en la configuración de ejecución (Program arguments).
+
+Lo que muestran las demos:
 1. **Dev 1 · modelo:** paquetes, validaciones (peso 0, prioridad fuera de 1-5, destino vacío, tiempo 0, código nulo), orden natural por código y repartidores.
 2. **Dev 1 · lista propia:** vacía, un elemento, eliminar primero / intermedio / último / inexistente, Iterator, uso con String e Integer.
 3. **Dev 1 · jornada:** registro de 32 paquetes y 7 repartidores, códigos e identificaciones repetidas, consulta por código, reglas de asignación y entrega.
 4. **Dev 2 · algoritmos con los ejemplos del enunciado:** comparadores, despacho FIFO y prioritario, municipios, recursividad con traza de la pila (14.0 kg y 4 paquetes), búsqueda binaria con traza y divide y vencerás con árbol de llamadas (18.7 kg).
 5. **Dev 3 · todo junto sobre la jornada:** 10 despachos prioritarios con asignación y entrega, historial en la lista propia, recursividad sobre los 32 paquetes, búsqueda binaria y paquete de mayor peso.
 
-La salida completa está en `docs/salida_ejemplo.txt`.
+La salida completa de `--demo` está en `docs/salida_ejemplo.txt`.
 
 ## Estructura
 ```
@@ -58,7 +73,8 @@ src/main/java/co/edu/uniquindio/quindioexpress/
 ├── operaciones/   ReporteMunicipios (Set, TreeSet, Map), Despacho (Queue, PriorityQueue)
 ├── algoritmos/    Recursivos, BusquedaBinaria, DivideYVenceras
 ├── demo/          DemoCore, DemoAlgoritmos, DemoJornada, Titulos
-└── Main.java
+├── consola/       MenuConsola (menú interactivo)
+└── Main.java      abre el menú; con --demo ejecuta las demos
 docs/              Partes A, C y D (base para el PDF)
 ```
 
