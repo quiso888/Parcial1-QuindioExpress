@@ -7,7 +7,19 @@ import java.util.List;
 /**
  * Búsqueda binaria por código sobre una lista ordenada.
  *
-
+ * <p><b>PRECONDICIÓN:</b> la lista debe estar ordenada por código ascendente
+ * (el orden natural de Paquete). Si no lo está, el resultado no es confiable:
+ * puede decir que un paquete no existe aunque sí esté. No se verifica aquí
+ * porque revisar el orden cuesta O(n) y anularía la ventaja de O(log n);
+ * para eso existe {@link #estaOrdenadaPorCodigo}.
+ *
+ * <pre>
+ * Tiempo O(log n): cada paso descarta la mitad. Con 8 paquetes, máximo 4 pasos;
+ *                  con 500.000, unos 19.
+ * Espacio O(1) la iterativa; O(log n) la recursiva (por la pila).
+ * </pre>
+ *
+ * <p>Responsable: Dev 2.
  */
 public final class BusquedaBinaria {
 
